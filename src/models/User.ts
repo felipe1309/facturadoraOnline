@@ -1,20 +1,19 @@
 import { models, Schema, model } from "mongoose";
-export const User = new Schema({
+const User = new Schema({
   key:{
-      type:Number,
-      required:true,
-      trim:true,
-      maxlength:4,
-      minlength:4
+    type:Number,
+    required:true,
+    max:9999,
+    unique:false
   },
   password:{
-      type:String,
-      required:true,
-      trim:true
+    type:String,
+    required:true,
+    trim:true
   },
   typeUser:{
-      type:String,
-      enum: ['admin','user'],
+    type:String,
+    enum: ['admin','user']
   }
 },{
   versionKey:false,

@@ -1,9 +1,9 @@
-import { models, Schema, model } from 'mongoose'
-import validator from 'validator'
-import { User } from './User'
-import { Product } from './Product'
-import { facturaCompra } from './FacturaCompra'
-import { facturaVenta } from './FacturaVenta'
+import { models, Schema, model } from "mongoose";
+import validator from "validator";
+import User from "./User";
+import Product from "./Product";
+import FacturaVenta from "./FacturaVenta";
+import FacturaCompra from "./FacturaCompra";
 const Empresa = new Schema(
   {
     nombre: {
@@ -18,37 +18,37 @@ const Empresa = new Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      validate: [validator.isEmail, 'Please fill a valid email address']
+      validate: [validator.isEmail, "Please fill a valid email address"]
     },
     password: {
       type: String,
       required: true,
       trim: true
     },
-    listUser: {
-      type: [User],
-      required: true,
-      default: []
-    },
-    listProducts: {
-      type: [Product],
-      required: true,
-      default: []
-    },
-    listaFacturaVentas:{
-      type:[facturaVenta],
+    listUsers:{
+      type: [User.schema],
       required:true,
       default:[]
     },
-    listaFacturaCompras:{
-      type:[facturaCompra],
+    listProduct:{
+      type:[Product.schema],
       required:true,
       default:[]
     },
+    listFacturaVenta:{
+      type:[FacturaVenta.schema],
+      required:true,
+      default:[]
+    },
+    listFacturaCompra:{
+      type:[FacturaCompra.schema],
+      required:true,
+      default:[]
+    }
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   }
-)
-export default models.Empresas || model('Empresas', Empresa)
+);
+export default models.Empresas || model("Empresas", Empresa);

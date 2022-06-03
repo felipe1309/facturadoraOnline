@@ -1,3 +1,4 @@
 export const config = {
-    MONGO_URL:"mongodb://127.0.0.1:27017/facturadoraOnline"
+    MONGO_URL:process.env.MONGO_URL,
+    SERCRET_KEY_JWT:process.env.SERCRET_KEY_JWT,
 }

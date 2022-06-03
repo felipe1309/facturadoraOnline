@@ -1,14 +1,13 @@
 import type { GetStaticProps, NextPage } from "next";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useContexto } from "../hooks/useContexto";
 const Home: NextPage = () => {
+  const router = useRouter();
   const { user } = useContexto();
-  const router = Router;
   useEffect(() => {
     if (!user.auth) {
-
-      router.push("/auth/IniciarSecion");
+      router.replace("/auth/IniciarSecion");
     }
   }, [user.auth]);
 

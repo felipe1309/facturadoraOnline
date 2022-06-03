@@ -1,19 +1,7 @@
 import {Schema,model,models} from 'mongoose'
-const ModeloProductoCompra = new Schema({
-    cantidad:{
-        type:Number,
-        required:true,
-        default:0
-    },
-    id:{
-        type:Schema.Types.ObjectId,
-        require:true
-    }
-
-})
 export const facturaCompra = new Schema({
     listaProductosVendidos:{
-        type:[ModeloProductoCompra],
+        type:[String],
         default:[],
         required:true
     },

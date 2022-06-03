@@ -1,29 +1,31 @@
 import { empresaSinId } from "../../types/empresa";
-import { validadorString, validadorListaString } from "./validadorString";
-export function validadorDeEmpresa(empresa: any): empresaSinId {
-  const {
-    nombre,
-    password,
-    email,
-    listUsers,
-    listProduct,
-    listFacturaCompra,
-    listFacturaVenta,
-  } = empresa;
-  const nombreEmpresa = validadorString(nombre);
-  const passwordEmpresa = validadorString(password);
-  const emailEmpresa = validadorString(email);
-  const listUsersEmpresa = validadorListaString(listUsers);
-  const listProductEmpresa = validadorListaString(listProduct);
-  const listFacturaVentaEmpresa = validadorListaString(listFacturaVenta);
-  const listFacturaCompraEmpresa = validadorListaString(listFacturaCompra);
-  return {
-    nombre: nombreEmpresa,
-    password: passwordEmpresa,
-    email: emailEmpresa,
-    listUsers: listUsersEmpresa,
-    listProduct: listProductEmpresa,
-    listFacuturaCompra: listFacturaCompraEmpresa,
-    listFacturaVenta: listFacturaVentaEmpresa,
-  };
+import { validadorListaUsers } from "./validadorDeUsers";
+import { validadorString } from "./validadorString";
+/**
+ * 
+ * @param empresa un objote de cualquiertipo
+ * @returns retorna un objeto de tipo empresa sin id o un error en caso de que no sea un objeto de tipo empresa el parametro de entrada
+ */
+export function validadorDeEmpresa(empresa: any): empresaSinId | undefined{
+  try {
+    const {
+      nombre,
+      password,
+      email,
+      listUsers
+    } = empresa;
+    const nombreEmpresa = validadorString(nombre);
+    const passwordEmpresa = validadorString(password);
+    const emailEmpresa = validadorString(email);
+    const listUsersEmpresa = validadorListaUsers(listUsers);
+    return {
+      nombre: nombreEmpresa,
+      password: passwordEmpresa,
+      email: emailEmpresa,
+      listUsers: listUsersEmpresa
+    };
+    
+  } catch (error) {
+    throw new Error("user input error");
+  }
 }
